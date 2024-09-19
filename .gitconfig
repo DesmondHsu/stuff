@@ -3,16 +3,15 @@
 	co = checkout
 	p = push
 	f = "!f() { \
-        if [ -z \"$1\" ]; then \
-            current_branch=$(git rev-parse --abbrev-ref HEAD); \
-            echo 'Fetching current branch:' $current_branch; \
-            git fetch origin $current_branch; \
-        else \
-            echo 'Fetching new remote branch and checkout:' $1; \
-            git fetch origin $1:$1; \
-            git checkout $1; \
-        fi; \
-    }; f"
+	        if [ -z \"$1\" ]; then \
+	            current_branch=$(git rev-parse --abbrev-ref HEAD); \
+	            echo 'Fetching current branch:' $current_branch; \
+	            git fetch origin $current_branch; \
+		else \
+		    echo 'Fetching new remote branch:' $1; \
+		    git fetch origin $1:refs/remotes/origin/$1; \
+		fi; \
+	}; f"
 	pul = "!current_branch=$(git rev-parse --abbrev-ref HEAD); \
             echo 'Fetching and fast-forwarding current branch:' $current_branch; \
             git fetch origin $current_branch && \
