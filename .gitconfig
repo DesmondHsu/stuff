@@ -17,3 +17,5 @@
             echo 'Fetching and fast-forwarding current branch:' $current_branch; \
             git fetch origin $current_branch && \
             git merge --ff-only origin/$current_branch"
+[push]
+	autoSetupRemote = true
